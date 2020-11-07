@@ -1,0 +1,19 @@
+th {
+  text-align: start;
+}
+
+table {
+  width: 100%;
+}
+
+.favourite {
+  color: yellow;
+}
+
+.favourite-icon:hover {
+  cursor: default;
+}
+
+.favourite-icon::selection {
+  background: none;
+}

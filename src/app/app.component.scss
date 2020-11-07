@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.main-table {
+  app-form {
+    position: sticky;
+    top: 0;
+  }
+
+  overflow: unset;
+  margin-top: 40px
+}

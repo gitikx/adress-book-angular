@@ -1,0 +1,48 @@
+<form [formGroup]="addRowForm" (ngSubmit)="submitForm()" class="input-form">
+  <mat-form-field>
+    <mat-label>Имя</mat-label>
+    <input formControlName="name" matInput
+           placeholder="Владислав"
+           autocomplete="off"
+           (input)="clearErrorsOnControl(addRowForm.controls.name)">
+    <mat-error *ngIf="addRowForm.controls.name.invalid">
+      Пожалуйста введите имя
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Фамилия</mat-label>
+    <input formControlName="surname" matInput
+           placeholder="Соколовский"
+           autocomplete="off"
+           (input)="clearErrorsOnControl(addRowForm.controls.surname)">
+    <mat-error *ngIf="addRowForm.controls.surname.invalid">
+      Пожалуйста введите фамилию
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Отчество</mat-label>
+    <input formControlName="patronymic" matInput
+           placeholder="Максимович"
+           autocomplete="off"
+           (input)="clearErrorsOnControl(addRowForm.controls.patronymic)">
+    <mat-error *ngIf="addRowForm.controls.patronymic.invalid">
+      Пожалуйста введите отчество
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Номер</mat-label>
+    <span matPrefix>+7 &nbsp;</span>
+    <input formControlName="phoneNumber"
+           (input)="formatNumber($event)"
+           maxlength="14" matInput
+           placeholder="(123)-45-67"
+           autocomplete="off">
+    <mat-error *ngIf="addRowForm.controls.phoneNumber.invalid">
+      Введите валидный номер
+    </mat-error>
+  </mat-form-field>
+  <button mat-flat-button color="primary" type="submit">Добавить</button>
+</form>
+
