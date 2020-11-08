@@ -4,14 +4,15 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { TableComponent } from './table/table.component';
 import { FormComponent } from './form/form.component';
-import { TableRowComponent } from './table/table-row/table-row.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { OrderByPipe } from './pipe/order-by.pipe';
+import { OrderContactsPipePipe } from './pipes/order-by.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {HttpInterceptorService} from "./services/http-interceptor.service";
+import { NumericFormatDirective } from './directives/numeric-format.directive';
 
 
 @NgModule({
@@ -19,8 +20,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     AppComponent,
     TableComponent,
     FormComponent,
-    TableRowComponent,
-    OrderByPipe
+    OrderContactsPipePipe,
+    NumericFormatDirective
   ],
   imports: [
     BrowserModule,
@@ -33,7 +34,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     HttpClientModule
   ],
   providers: [
-    OrderByPipe
+    {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true},
+    OrderContactsPipePipe
   ],
   bootstrap: [AppComponent]
 })

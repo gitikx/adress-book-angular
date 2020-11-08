@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="data">
+<table mat-table [dataSource]="data | orderContacts">
 
   <ng-container matColumnDef="isFavourite">
     <th mat-header-cell *matHeaderCellDef></th>
@@ -6,8 +6,7 @@
         [class.favourite]="element.isFavourite"
         (click)="changeContactFavouriteStatus(element)"
         class="favourite-icon"
-    >★
-    </td>
+    >★</td>
   </ng-container>
 
   <ng-container matColumnDef="surname">

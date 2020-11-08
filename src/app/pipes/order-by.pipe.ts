@@ -2,9 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import {Contact} from "../models/contact.model";
 
 @Pipe({
-  name: 'orderBy'
+  name: 'orderContacts'
 })
-export class OrderByPipe implements PipeTransform {
+export class OrderContactsPipePipe implements PipeTransform {
 
   transform(value:Contact[]): Contact[] {
     return value.sort((elementA, elementB) => {

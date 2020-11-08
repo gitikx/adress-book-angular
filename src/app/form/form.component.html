@@ -1,17 +1,8 @@
 <form [formGroup]="addRowForm" (ngSubmit)="submitForm()" class="input-form">
   <mat-form-field>
-    <mat-label>Имя</mat-label>
-    <input formControlName="name" matInput
-           placeholder="Владислав"
-           autocomplete="off"
-           (input)="clearErrorsOnControl(addRowForm.controls.name)">
-    <mat-error *ngIf="addRowForm.controls.name.invalid">
-      Пожалуйста введите имя
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
     <mat-label>Фамилия</mat-label>
-    <input formControlName="surname" matInput
+    <input formControlName="surname"
+           matInput
            placeholder="Соколовский"
            autocomplete="off"
            (input)="clearErrorsOnControl(addRowForm.controls.surname)">
@@ -21,8 +12,21 @@
   </mat-form-field>
 
   <mat-form-field>
+    <mat-label>Имя</mat-label>
+    <input formControlName="name"
+           matInput
+           placeholder="Владислав"
+           autocomplete="off"
+           (input)="clearErrorsOnControl(addRowForm.controls.name)">
+    <mat-error *ngIf="addRowForm.controls.name.invalid">
+      Пожалуйста введите имя
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
     <mat-label>Отчество</mat-label>
-    <input formControlName="patronymic" matInput
+    <input formControlName="patronymic"
+           matInput
            placeholder="Максимович"
            autocomplete="off"
            (input)="clearErrorsOnControl(addRowForm.controls.patronymic)">
@@ -35,14 +39,15 @@
     <mat-label>Номер</mat-label>
     <span matPrefix>+7 &nbsp;</span>
     <input formControlName="phoneNumber"
-           (input)="formatNumber($event)"
-           maxlength="14" matInput
-           placeholder="(123)-45-67"
+           maxlength="15"
+           [appNumericFormat]="addRowForm.controls.phoneNumber"
+           matInput
+           placeholder="(123)333-45-67"
            autocomplete="off">
     <mat-error *ngIf="addRowForm.controls.phoneNumber.invalid">
       Введите валидный номер
     </mat-error>
   </mat-form-field>
-  <button mat-flat-button color="primary" type="submit">Добавить</button>
+  <button mat-flat-button class="input-button-add" type="submit">+</button>
 </form>
 
