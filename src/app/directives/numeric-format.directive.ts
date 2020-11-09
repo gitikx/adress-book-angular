@@ -39,6 +39,9 @@ export class NumericFormatDirective {
   @Input('appNumericFormat')
   controlField: AbstractControl;
 
+  /**
+   * Creates instance of numeric directive
+   */
   constructor() { }
 
 }

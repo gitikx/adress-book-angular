@@ -11,28 +11,40 @@ export class TableComponent {
    * Collection of contacts
    */
   @Input()
-  data: any[];
+  data: Contact[];
   /**
    * Row deletion emitter
    */
   @Output()
-  rowDeleted = new EventEmitter();
+  rowDeleted: EventEmitter<Contact> = new EventEmitter();
   /**
    * Row update emitter
    */
   @Output()
-  rowUpdated = new EventEmitter();
+  rowUpdated: EventEmitter<Contact> = new EventEmitter();
+  /**
+   * Table columns
+   */
+  columns: string[] = [...Contact.getFieldsNames(), 'delete'];
 
-  columns: any = [...Contact.getFieldsNames(), 'delete'];
+  /**
+   * Creates table component instance
+   */
+  constructor() { }
 
-  constructor() {
-  }
-
-  deleteRow(contact: Contact) {
+  /**
+   * Deletes row
+   * @param contact contact to delete
+   */
+  deleteRow(contact: Contact): void {
     this.rowDeleted.emit(contact);
   }
 
-  changeContactFavouriteStatus(contact: Contact) {
+  /**
+   * Changes contact favourite status
+   * @param contact contact to change favourite status
+   */
+  changeContactFavouriteStatus(contact: Contact): void {
     contact.isFavourite = !contact.isFavourite;
     this.rowUpdated.emit(contact);
   }

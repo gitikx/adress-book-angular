@@ -1,31 +1,54 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
+import {DataService} from "./services/data.service";
+import {LoaderService} from "./services/loader.service";
+import {Contact} from "./models/contact.model";
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  const dataService = {
+    downloadData() {
+    },
+    addRow(contact: Contact) {
+    },
+    deleteRow(contact: Contact) {
+    },
+    updateRow(contact: Contact) {
+    }
+  } as DataService;
+  const loaderService = {} as LoaderService;
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
+    component = new AppComponent(dataService, loaderService);
+    component.ngOnInit();
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'test'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('test');
+  it('should initialize data', () => {
+    const spy = spyOn(dataService, 'downloadData');
+    component.ngOnInit();
+    expect(spy).toHaveBeenCalled();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('test-address-book-angular app is running!');
+  it('should add row', () => {
+    const spy = spyOn(dataService, 'addRow');
+    const contact = {} as Contact;
+    component.onAddRow(contact);
+    expect(spy).toHaveBeenCalledWith(contact);
+  });
+
+  it('should delete row', () => {
+    const spy = spyOn(dataService, 'deleteRow');
+    const contact = {} as Contact;
+    component.deleteRow(contact);
+    expect(spy).toHaveBeenCalledWith(contact);
+  });
+
+  it('should update row', () => {
+    const spy = spyOn(dataService, 'updateRow');
+    const contact = {} as Contact;
+    component.updateRow(contact);
+    expect(spy).toHaveBeenCalledWith(contact);
   });
 });

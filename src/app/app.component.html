@@ -2,3 +2,6 @@
   <app-form (rowAdded)="onAddRow($event)"></app-form>
   <app-table [data]="dataService.data" (rowDeleted)="deleteRow($event)" (rowUpdated)="updateRow($event)"></app-table>
 </div>
+<mat-progress-bar *ngIf="loaderService.showLoader" mode="query" class="progress-bar"></mat-progress-bar>
+<div *ngIf="loaderService.showLoader" class="progress-bar-background"></div>
+

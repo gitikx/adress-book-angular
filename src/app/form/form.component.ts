@@ -9,21 +9,23 @@ import {Contact} from "../models/contact.model";
 })
 export class FormComponent implements OnInit {
   /**
-   *
+   * Row added emitter
    */
   @Output()
   rowAdded: EventEmitter<Contact> = new EventEmitter();
   /**
-   *
+   * Main form for contact adding
    */
   addRowForm: FormGroup;
 
   /**
-   *
+   *Creates instance of contact input form
    */
-  constructor() {
-  }
+  constructor() { }
 
+  /**
+   * On init hook. Initializes form.
+   */
   ngOnInit(): void {
     this.addRowForm = new FormGroup({
       name: new FormControl('', {
@@ -57,6 +59,8 @@ export class FormComponent implements OnInit {
         patronymic: this.addRowForm.value.patronymic,
         phoneNumber: '+7'.concat(this.addRowForm.value.phoneNumber),
       } as Contact);
+      this.addRowForm.reset('');
+      this.addRowForm.controls.surname.setErrors(null)
     }
   }
 

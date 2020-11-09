@@ -7,13 +7,28 @@ table {
 }
 
 .favourite {
-  color: yellow;
+  color: #d9d93a;
 }
 
-.favourite-icon:hover {
-  cursor: default;
+.favourite-icon {
+  font-size: 20px;
+  &:hover {
+    cursor: pointer;
+  }
+
+  &::selection {
+    background: none;
+  }
 }
 
-.favourite-icon::selection {
-  background: none;
+.delete-icon {
+  font-size: 40px;
+  color: red;
+  margin-top: 2px;
+  display: block;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
